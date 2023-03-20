@@ -19,7 +19,10 @@ cd pytorch-gradual-warmup-lr; python setup.py install; cd ..
 
 ## Quick Run
 
-To test the pre-trained models of Denoising, download pretrain_model and put it on denoise/pretrained_models and run:
+To test the pre-trained models of Denoising, 
+dewnload datasets (e.g. DIV2K and LSDIR),
+download pretrain_model and put it on denoise/pretrained_models,
+run:
 ```
 python demo.py --input_dir path_to_images --result_dir save_images_here --task Task_Name
 ```
