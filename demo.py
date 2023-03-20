@@ -14,10 +14,10 @@ import argparse
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='Demo MPRNet')
-parser.add_argument('--input_dir', default='temp/valid_data', type=str, help='Input images')
-parser.add_argument('--result_dir', default='temp/MPRNet-main/output', type=str, help='Directory for results')
-parser.add_argument('--task', required=True, type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
-parser.add_argument('--tile', type=int, default=None, help='Tile size (e.g 720). None means testing on the original resolution image')
+parser.add_argument('--input_dir', default='test_data', type=str, help='Input images')
+parser.add_argument('--result_dir', default='test_output', type=str, help='Directory for results')
+parser.add_argument('--task', required=True, type=str, help='Task to run', choices=['Denoising'])
+parser.add_argument('--tile', type=int, default=None, help='Tile size (e.g 256). None means testing on the original resolution image')
 parser.add_argument('--tile_overlap', type=int, default=32, help='Overlapping of different tiles')
 
 args = parser.parse_args()
