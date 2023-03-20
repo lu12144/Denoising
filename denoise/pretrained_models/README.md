@@ -1,1 +1,1 @@
-pre-trained denoising model is available [here](https://drive.google.com/file/d/1LODPt9kYmxwU98g96UrRA0_Eh5HYcsRw/view?usp=sharing)
+pre-trained denoising model is available [here](https://drive.google.com/file/d/1m1WeXmpvFormJjbpLZdGLxmNDmdGbvWL/view?usp=share_link)
