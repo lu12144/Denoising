@@ -2,7 +2,7 @@
 ## Training
 - Download the Datasets of DIV2K and LSDIR
 
-- Generate image patches from full-resolution training images
+- Generate image patches from full-resolution train images
 ```
 python generate_patches_data.py --ps 128 --num_patches 300 --num_cores 10
 ```
