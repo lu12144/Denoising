@@ -9,8 +9,8 @@ import multiprocessing
 import argparse
 
 parser = argparse.ArgumentParser(description='Generate patches from Full Resolution images')
-parser.add_argument('--src_dir', default='/home/wyx/temp/input', type=str, help='Directory for full resolution images')
-parser.add_argument('--tar_dir', default='/home/wyx/temp/MPRNet-main/Denoising/Datasets/val',type=str, help='Directory for image patches')
+parser.add_argument('--src_dir', default='data', type=str, help='Directory for full resolution images')
+parser.add_argument('--tar_dir', default='Datasets',type=str, help='Directory for image patches')
 parser.add_argument('--ps', default=256, type=int, help='Image Patch Size')
 parser.add_argument('--num_patches', default=300, type=int, help='Number of patches per image')
 parser.add_argument('--num_cores', default=10, type=int, help='Number of CPU Cores')
@@ -33,21 +33,14 @@ os.makedirs(noisy_patchDir)
 os.makedirs(clean_patchDir)
 
 #get sorted folders
-# files_n = natsorted(glob(os.path.join(src, 'DIV2K_train_n_720', '*.png')))
-# files_c = natsorted(glob(os.path.join(src, 'DIV2K_train_gt_720', '*.png')))
+files_n = natsorted(glob(os.path.join(src, 'noise', '*.png')))
+files_c = natsorted(glob(os.path.join(src, 'ground_truth', '*.png')))
 
-files_n = natsorted(glob(os.path.join(src, 'LSDIR_valid_n_100', '*.png')))
-files_c = natsorted(glob(os.path.join(src, 'LSDIR_valid_gt_100', '*.png')))
-# print(os.path.join(src, 'DIV2K_train_noise', '*.PNG'))
-# print(os.path.join(src, 'DIV2K_train_HR', '*', '*.PNG'))
-# print(files_n)
 
 noisy_files, clean_files = [], []
 for file_ in files_n:
-    # filename = os.path.split(file_)[-1]
     noisy_files.append(file_)
-    # print(file_)
-# print(noisy_files)
+
 for file_ in files_c:
     clean_files.append(file_)
 
