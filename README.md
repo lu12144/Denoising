@@ -26,7 +26,8 @@ python demo.py --input_dir path_to_images --result_dir save_images_here --task T
 
 
 ## Results of competition
-please download here
+please download [here](https://drive.google.com/file/d/1m1WeXmpvFormJjbpLZdGLxmNDmdGbvWL/view?usp=share_link)
+
 
 
 ## Citation
