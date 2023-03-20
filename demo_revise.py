@@ -32,11 +32,6 @@ def save_img(filepath, img):
 task    = args.task
 inp_dir = args.input_dir
 out_dir = args.result_dir
-# task = 'Denoising'
-# inp_dir = '/home/wyx/temp/input/temp_data'
-# out_dir = '/home/wyx/temp/output/output_temp'
-# tile = 360
-# tile_overlap = 32
 
 os.makedirs(out_dir, exist_ok=True)
 
@@ -49,11 +44,9 @@ if len(files) == 0:
     raise Exception(f"No files found at {inp_dir}")
 
 # Load corresponding model architecture and weights
-weights = os.path.join(task, "pretrained_models", "model_"+task.lower()+".pth")
-# weights = '/home/wyx/temp/MPRNet-main/Denoising/pretrained_models/model_denoising.pth'
+weights = os.path.join(task, "pretrained_models", "model_latest.pth")
 
 load_file = run_path(os.path.join(task,'MPRNet.py'))
-# load_file = run_path('/home/wyx/temp/MPRNet-main/Denoising/MPRNet.py')
 model = load_file['MPRNet']()
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -80,19 +73,6 @@ with torch.no_grad():
         
         input_ = TF.to_tensor(img).unsqueeze(0).cuda()
 
-        # img_1 = load_img(file_)
-
-        # input_1 = torch.from_numpy(img).float().div(255.).permute(2,0,1).unsqueeze(0).to(device)
-
-
-        # print("print img:\n")
-        # print(img)
-        # print(input_)
-
-        # print("print img_1:\n")
-        # print(img_1)
-        # print(input_1)
-
         # Pad the input if not_multiple_of 8
         height,width = input_.shape[2], input_.shape[3]
         H,W = ((height+img_multiple_of)//img_multiple_of)*img_multiple_of, ((width+img_multiple_of)//img_multiple_of)*img_multiple_of
@@ -101,14 +81,12 @@ with torch.no_grad():
         input_ = F.pad(input_, (0,padw,0,padh), 'reflect')
 
         if args.tile is None:
-        # if tile is None:
             ## Testing on the original resolution image
             restored = model(input_)
         else:
             # test the image tile by tile
             b, c, h, w = input_.shape
             tile = min(args.tile, h, w)
-            # tile = min(tile, h, w)
             assert tile % 8 == 0, "tile size should be multiple of 8"
             tile_overlap = args.tile_overlap
 
